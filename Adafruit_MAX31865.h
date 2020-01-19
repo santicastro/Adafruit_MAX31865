@@ -76,6 +76,7 @@ public:
   void enableBias(bool b);
 
   float temperature(float RTDnominal, float refResistor);
+  float temperature(float RTDnominal, float refResistor, float internalResistor);
 
 private:
   int8_t _sclk, _miso, _mosi, _cs;

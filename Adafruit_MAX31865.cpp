@@ -179,12 +179,16 @@ void Adafruit_MAX31865::setWires(max31865_numwires_t wires) {
 */
 /**************************************************************************/
 float Adafruit_MAX31865::temperature(float RTDnominal, float refResistor) {
+  return temperature(RTDnominal, refResistor, 0.0);
+}
+
+float Adafruit_MAX31865::temperature(float RTDnominal, float refResistor, float internalResistor) {
   float Z1, Z2, Z3, Z4, Rt, temp;
 
   Rt = readRTD();
   Rt /= 32768;
   Rt *= refResistor;
-
+  Rt -= internalResistor; // internal hardware resistence
   // Serial.print("\nResistance: "); Serial.println(Rt, 8);
 
   Z1 = -RTD_A;
